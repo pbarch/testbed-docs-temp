@@ -12,15 +12,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          path: 'testbed-docs-temp'
+
+      - uses: actions/checkout@v4
+        with:
           fetch-depth: 0
           repository: 'pbarch/testbed-v4'
           ref: 'StudioTestbed-2024'
           token: ${{ secrets.PAT_TOKEN }}
           persist-credentials: false
+          path: 'testbed-v4'
+
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        working-directory: testbed-docs-temp
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -33,8 +40,12 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
+        working-directory: testbed-docs-temp
       - run: pip install mkdocs-material 
+        working-directory: testbed-docs-temp
       - run: pip install mkdocs-git-revision-date-localized-plugin
+        working-directory: testbed-docs-temp
 
 
-      - run: mkdocs gh-deploy --remote-name git@github.com:pbarch/testbed-docs-temp.git
+      - run: mkdocs gh-deploy --config-file ../testbed-v4/mkdocs.yaml
+        working-directory: testbed-docs-temp
