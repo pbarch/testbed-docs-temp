@@ -40,7 +40,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-        working-directory: testbed-docs-temp
       - run: pip install mkdocs-material 
         working-directory: testbed-docs-temp
       - run: pip install mkdocs-git-revision-date-localized-plugin
