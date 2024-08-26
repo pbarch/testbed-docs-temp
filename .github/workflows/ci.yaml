@@ -37,7 +37,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
-          path: .cache
+          path: testbed-docs-temp/.cache
           restore-keys: |
             mkdocs-material-
       - run: pip install mkdocs-material 
