@@ -37,4 +37,4 @@ jobs:
       - run: pip install mkdocs-git-revision-date-localized-plugin
 
 
-      - run: mkdocs gh-deploy --remote-name https://github.com/pbarch/testbed-docs-temp
+      - run: mkdocs gh-deploy --remote-name git@github.com:pbarch/testbed-docs-temp.git
